@@ -2,7 +2,7 @@ import streamlit as st
 import textstat as ts
 from pdfminer.high_level import extract_text
 from io import StringIO
-import docx
+import docx2txt
 import requests
 from bs4 import BeautifulSoup as bs
 
@@ -111,7 +111,6 @@ def extract_txt(text):
     document_result(string_data)
 
 
-
 def upload_docx():
 
     """ To enable docx files to be uploaded by the user. It extracts the file
@@ -120,12 +119,8 @@ def upload_docx():
 
     file = st.sidebar.file_uploader('Choose a file', type='docx')
     if file is not None:
-        res = []
-        doc = docx.Document(file)
-        for para in doc.paragraphs:
-            res.append(para.text)
-        fixed = '\n'.join(res)
-        document_result(fixed)
+        docx = docx2txt.process(file)
+        document_result(docx)
 
 
 def document_result(file):
