@@ -1,6 +1,6 @@
 import streamlit as st
 import textstat as ts
-from pdfminer.high_level import extract_pages, extract_text
+from pdfminer.high_level import extract_text
 from io import StringIO
 import docx
 import requests
