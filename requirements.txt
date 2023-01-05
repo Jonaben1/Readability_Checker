@@ -1,5 +1,6 @@
 textstat==0.7.3
-docxt2txt==0.8
+python-docx==0.8.11
+lxml==4.9.2
 requests==2.22.0
 bs4==0.0.1
 beautifulsoup4==4.11.1
