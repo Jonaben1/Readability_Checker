@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup as bs
 
 
 st.title('Streamlit Readability Checker')
-
+st.write("Created and designed by [Jonaben](https://www.linkedin.com/in/jonathan-ben-okah-7b507725b)")
 
 def main():
 
