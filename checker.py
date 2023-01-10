@@ -188,7 +188,7 @@ def grammar_checker(text):
     for i in check:
         result.append(i)
         result.append(f'Error in text => {text[i.offset:i.offset + i.errorLength]}')
-        result.append(f'Can be replaced with =>  {i.replacements}', end="\n\n")
+        result.append(f'Can be replaced with =>  {i.replacements}')
         result.append('--------------------------------------')
     return result
 
