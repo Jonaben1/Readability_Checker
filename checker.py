@@ -184,11 +184,11 @@ def get_data(url):
 def grammar_checker(text):
     tool = language_tool_python.LanguageTool('en-US', config={'maxSpellingSuggestions': 1})
     check = tool.check(text)
-    return [i.replacements for i in check]
- #       print(i)
-#        print(f'Error in text => {text[i.offset:i.offset + i.errorLength]}')
-#        print(f'Can be replaced with =>  {i.replacements}', end="\n\n")
-
+    for i in check:
+        print(i)
+        print(f'Error in text => {text[i.offset:i.offset + i.errorLength]}')
+        print(f'Can be replaced with =>  {i.replacements}', end="\n\n")
+        print('--------------------------------------')
 
 
 if __name__ == '__main__':
