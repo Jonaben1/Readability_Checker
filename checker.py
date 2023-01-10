@@ -5,9 +5,10 @@ from io import StringIO
 import docx2txt
 import requests
 from bs4 import BeautifulSoup as bs
+import language_tool_python
 
-
-st.title('Streamlit Readability Checker')
+st.title('Readability and Grammar Checker')
+st.write('Check the grammar and readability of your work. You can check select an option by clicking the left arrow.')
 st.write("Created and designed by [Jonaben](https://www.linkedin.com/in/jonathan-ben-okah-7b507725b)")
 
 def main():
@@ -43,13 +44,18 @@ def text_result():
     text = 'Your text goes here...'
     #displaying the textbox where texts will be written
     box = st.text_area('Text Field', text, height=200)
-    scan = st.button('Scan File')
+    left, right = st.columns([5, 1])
+    with left:
+       scan = st.button('Check Readability')
+    with right:
+       grammar = st.button('Check Gramamar')
     # if button is pressed
     if scan:
         # display statistical results
         st.write('Text Statistics')
         st.write(readability_checker(box))
-
+    elif grammar:
+        st.write(grammar_checker(box))
 
 def readability_checker(w):
 
@@ -132,13 +138,18 @@ def document_result(file):
 
     #displaying the textbox where texts will be received
     box = st.text_area('Text Field', file, height=200)
-    scan = st.button('Scan Text')
+    left, right = st.columns([3, .75])
+    with left:
+       scan = st.button('Check Readability')
+    with right:
+       grammar = st.button('Check Gramamar')
     # if button is pressed
     if scan:
         # display statistical results
         st.write('Text Statistics')
         st.write(readability_checker(box))
-
+    elif grammar:
+        st.write(grammar_checker(box))
 
 def get_url():
 
@@ -167,6 +178,16 @@ def get_data(url):
         content = page.content
     soup = bs(content, 'html.parser')
     document_result(soup.get_text())
+
+
+
+def grammar_checker(text):
+    tool = language_tool_python.LanguageTool('en-US', config={'maxSpellingSuggestions': 1})
+    check = tool.check(text)
+    return [i.replacements for i in check]
+ #       print(i)
+#        print(f'Error in text => {text[i.offset:i.offset + i.errorLength]}')
+#        print(f'Can be replaced with =>  {i.replacements}', end="\n\n")
 
 
 
