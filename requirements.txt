@@ -1,3 +1,4 @@
+streamlit==1.16.0
 docx2txt==0.8
 textstat==0.7.3
 python-docx==0.8.11
@@ -5,7 +6,7 @@ lxml==4.9.2
 requests==2.22.0
 bs4==0.0.1
 beautifulsoup4==4.11.1
-soupseive==2.3.2.post1
+soupsieve==2.3.2.post1
 pdfminer.six==20221105
 pycryptodome==3.16.0
 pyphen==0.13.2
